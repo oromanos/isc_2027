@@ -2,11 +2,9 @@ import java.util.*;
 
 public class SudokuCheck {
 
-    public static void main(String[] args) {
+    public boolean validGrid(int arr[][]) {
 
-        int arr[][] = new int[9][9];
         int i, j, g, sum;
-        boolean flag = true;
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter 0 for blank!");
@@ -27,20 +25,10 @@ public class SudokuCheck {
                 if (arr[i][j] == 0)
                     continue;
                 else if ((sum & (int) Math.pow(2, arr[i][j])) != 0) {
-                    flag = false;
-                    break;
+                    return false;
                 }
                 sum += (int) Math.pow(2, arr[i][j]);
             }
-            if (!flag) {
-                break;
-
-            }
-
-        }
-        if (!flag) {
-            System.out.println("Invalid grid!");
-            return;
 
         }
 
@@ -52,20 +40,10 @@ public class SudokuCheck {
                 if (arr[i][j] == 0)
                     continue;
                 else if ((sum & (int) Math.pow(2, arr[i][j])) != 0) {
-                    flag = false;
-                    break;
+                    return false;
                 }
                 sum += (int) Math.pow(2, arr[i][j]);
             }
-            if (!flag) {
-                break;
-
-            }
-
-        }
-        if (!flag) {
-            System.out.println("Invalid grid!");
-            return;
 
         }
 
@@ -82,24 +60,15 @@ public class SudokuCheck {
                     if (arr[i][j] == 0)
                         continue;
                     else if ((sum & (int) Math.pow(2, arr[i][j])) != 0) {
-                        flag = false;
-                        break;
+                        return false;
                     }
                     sum += (int) Math.pow(2, arr[i][j]);
                 }
-                if (!flag) {
-                    break;
-
-                }
 
             }
-        }
-        if (!flag) {
-            System.out.println("Invalid grid!");
-            return;
 
         }
-
+        return true;
     }
 
 }
