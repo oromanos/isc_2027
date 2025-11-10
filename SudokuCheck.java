@@ -1,4 +1,3 @@
-import java.util.*;
 
 public class SudokuCheck {
 
@@ -6,17 +5,6 @@ public class SudokuCheck {
 
         int i, j, g, sum;
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter 0 for blank!");
-        for (i = 0; i < 9; i++) {
-            for (j = 0; j < 9; j++) {
-                System.out.println("Enter a number for (Row :" + (i + 1) + " Column :" + (j + 1) + " )");
-                arr[i][j] = sc.nextInt();
-                if (arr[i][j] < 0 || arr[i][j] > 9) {
-                    System.out.println("Invalid input!");
-                }
-            }
-        }
         // checking row
 
         for (i = 0; i < 9; i++) {

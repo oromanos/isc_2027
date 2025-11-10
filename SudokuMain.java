@@ -3,6 +3,7 @@ import java.util.*;
 public class SudokuMain {
     static int ghost[][];
     static int grid[][];
+    static int solutionCount;
 
     public static void main(String[] args) {
         int i, j;
@@ -15,21 +16,21 @@ public class SudokuMain {
                 System.out.println("Enter a number for (Row :" + (i + 1) + " Column :" + (j + 1) + " )");
                 grid[i][j] = sc.nextInt();
                 if (grid[i][j] < 0 || grid[i][j] > 9) {
-                    System.out.println("Invalid input!");
+                    System.out.println("Invalid input! (Numbers should only be between 0-9 )");
                     return;
                 }
             }
         }
         SudokuCheck ob = new SudokuCheck();
         ghost = grid;
-        if (ob.validGrid(grid)) {
-            gridPrinter(grid);
-            if (gridSolve()) {
-                gridPrinter(ghost);
-            }
-        } else {
-            System.out.println("Invalid grid");
+        if (!ob.validGrid(grid)) {
+
+            System.out.println("Invalid grid ");
+            return;
         }
+        gridPrinter(grid);
+        gridSolve();
+        System.out.println("The puzzle can be solved in : " + solutionCount);
     }
 
     public static boolean isValid(int row, int col, int num) {
@@ -57,28 +58,24 @@ public class SudokuMain {
 
     }
 
-    public static boolean gridSolve() {
-        int r, c, num;
-        for (r = 0; r < 9; r++) {
-            for (c = 0; c < 9; c++) {
+    public static void gridSolve() {
+        for (int r = 0; r < 9; r++) {
+            for (int c = 0; c < 9; c++) {
                 if (ghost[r][c] == 0) {
-                    for (num = 1; num <= 9; num++) {
+                    for (int num = 1; num <= 9; num++) {
                         if (isValid(r, c, num)) {
                             ghost[r][c] = num;
-
-                            if (gridSolve()) {
-                                return true;
-                            }
+                            gridSolve();
                             ghost[r][c] = 0;
-
                         }
                     }
-                    return false;
-
+                    return;
                 }
             }
         }
-        return true;
+
+        solutionCount++;
+        gridPrinter(ghost);
     }
 
     public static void gridPrinter(int arr[][]) {
