@@ -1,0 +1,49 @@
+import java.util.*;
+class LastIndexArray
+{
+    public static void main(String Args[])
+    {
+        Scanner sind=new Scanner (System.in);
+        int i,f=0,s,n,ind=0;
+        System.out.println("Enter the size");
+        n=sind.nextInt();
+        if(n<1)
+        {
+            System.out.println("Size out of bound");
+            return;
+        }
+        int l=0,h=n-1,m;
+        int a[]=new int[n];
+        System.out.println("Enter thr value in ascended sorted form");
+        for(i=0;i<n;i++)
+        {
+            a[i]=sind.nextInt();
+        }
+        System.out.println("Enter a search value");
+        s=sind.nextInt();
+        while(l<=h)
+        {
+            m=(l+h)/2;
+            if(a[m]==s)
+            {
+                ind=m;
+                l=m+1;
+                f++;
+            }
+            else if(a[m]<s)
+            {
+                h=m-1;
+            }
+            else
+            {
+                l=m+1;
+            }
+        }
+        if(f==0)
+        {
+            System.out.println("Search value is not present in the array");
+            return;
+        }
+        System.out.println("Index is" + ind);
+    }
+}
