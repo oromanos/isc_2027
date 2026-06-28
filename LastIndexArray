@@ -3,10 +3,10 @@ class LastIndexArray
 {
     public static void main(String Args[])
     {
-        Scanner sind=new Scanner (System.in);
+        Scanner sc=new Scanner (System.in);
         int i,f=0,s,n,ind=0;
         System.out.println("Enter the size");
-        n=sind.nextInt();
+        n=sc.nextInt();
         if(n<1)
         {
             System.out.println("Size out of bound");
@@ -17,10 +17,10 @@ class LastIndexArray
         System.out.println("Enter thr value in ascended sorted form");
         for(i=0;i<n;i++)
         {
-            a[i]=sind.nextInt();
+            a[i]=sc.nextInt();
         }
         System.out.println("Enter a search value");
-        s=sind.nextInt();
+        s=sc.nextInt();
         while(l<=h)
         {
             m=(l+h)/2;
